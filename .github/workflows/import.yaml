@@ -15,7 +15,7 @@ on:
       - import-helper
 
 env:
-  SOURCE_REF: v0.7.1
+  SOURCE_REF: v0.8.0
   FRESH: "true"
   BRANCH: add-departures-plus
 
@@ -53,6 +53,6 @@ jobs:
           cp _src/departuresplus/* apps/departuresplus/
           git add -A apps/departuresplus
           if git diff --cached --quiet; then echo "Nothing to do."; exit 0; fi
-          git commit --quiet -m "$title" -m "Departure board with station rotation, line colors, a status row with clock and ticker, and a local API for Home Assistant. Version $version." -m "Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+          git commit --quiet -m "$title" -m "Departure board with station rotation, line colors, a status row with clock and ticker, and a local API for Home Assistant. Version $version." -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
           Claude-Session: https://claude.ai/code/session_01FNnN95mVya2tgMrPWK5BEG"
           git push --force origin "$BRANCH"
