@@ -1,0 +1,34 @@
+name: Import Departures Plus
+
+on:
+  push:
+    branches:
+      - import-helper
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          repository: jnbp/matrixbox-departures-plus
+          ref: 01d14baad7e0e2ab8c279955a623b335450299ee
+          path: _src
+      - name: Commit the app onto add-departures-plus
+        run: |
+          mkdir -p apps/departuresplus
+          cp _src/departuresplus/* apps/departuresplus/
+          rm -rf _src
+          git config user.name "jnbp"
+          git config user.email "50960701+jnbp@users.noreply.github.com"
+          git checkout -b add-departures-plus
+          git add apps/departuresplus
+          git commit -m "Add Departures Plus app" -m "Departure board with station rotation, line colors, a status row with clock and ticker, and a local API for Home Assistant." -m "Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+          Claude-Session: https://claude.ai/code/session_01FNnN95mVya2tgMrPWK5BEG"
+          git push --force origin add-departures-plus
