@@ -16,7 +16,7 @@ on:
 
 env:
   SOURCE_REF: v0.8.0
-  FRESH: "true"
+  FRESH: "false"
   BRANCH: add-departures-plus
 
 permissions:
@@ -55,4 +55,4 @@ jobs:
           if git diff --cached --quiet; then echo "Nothing to do."; exit 0; fi
           git commit --quiet -m "$title" -m "Departure board with station rotation, line colors, a status row with clock and ticker, and a local API for Home Assistant. Version $version." -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
           Claude-Session: https://claude.ai/code/session_01FNnN95mVya2tgMrPWK5BEG"
-          git push --force origin "$BRANCH"
+          if [ "$FRESH" = "true" ]; then git push --force origin "$BRANCH"; else git push origin "$BRANCH"; fi
